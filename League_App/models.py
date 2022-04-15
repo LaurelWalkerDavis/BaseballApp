@@ -2,9 +2,12 @@ from django.db import models
 
 
 # Create your models here.
+from django.db.models import SET_DEFAULT
+
+
 class Player(models.Model):
     team = models.ForeignKey('Team', related_name='players', related_query_name='player',
-                             default=None, on_delete=models.DO_NOTHING)
+                             default=None, on_delete=SET_DEFAULT)
     first_name = models.CharField(max_length=200, default=None)
     last_name = models.CharField(max_length=200, default=None)
     hits = models.IntegerField(default=0)
@@ -31,6 +34,19 @@ class Player(models.Model):
         ordering = ['-last_name']
 
 
+class League(models.Model):
+    league_name = models.CharField(max_length=200, default="My League")
+    # clashes with "league = models.ForeignKey(League, on_delete=models.CASCADE)" in Team
+    #  all_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
+
+    def __str__(self):
+        return f"League: <{self.league_name}>"
+
+    class Meta:
+        indexes = [models.Index(fields=['league_name'])]
+        ordering = ['-league_name']
+
+
 class Team(models.Model):
     team_name = models.CharField(max_length=200, default=None)
     t_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
@@ -44,6 +60,7 @@ class Team(models.Model):
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
     games_played = models.IntegerField(default=0)
+    league = models.ForeignKey(League, on_delete=models.CASCADE, default=League.league_name)
 
     def __str__(self):
         return f"Team <{self.team_name}, \nHits: {self.t_hits}, \nDoubles: {self.t_doubles}, " \
@@ -54,5 +71,4 @@ class Team(models.Model):
     class Meta:
         indexes = [models.Index(fields=['team_name'])]
         ordering = ['-team_name']
-
 

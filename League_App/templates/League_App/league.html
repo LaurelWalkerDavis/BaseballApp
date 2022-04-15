@@ -2,10 +2,10 @@
 
 {% block content %}
 
-    <p>{{ team_name }}</p>
+    <p>All League Teams</p>
 
     <ul>
-        {% for player in team_players %}
+        {% for team in all_teams %}
             <li> {{ team }}</li>
         {% empty %}
             <li> No teams have been added yet.</li>
