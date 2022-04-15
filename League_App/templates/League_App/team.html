@@ -1,0 +1,15 @@
+{% extends "League_App/base.html" %}
+
+{% block content %}
+
+    <p>All League Teams</p>
+
+    <ul>
+        {% for team in all_teams %}
+            <li> {{ team }}</li>
+        {% empty %}
+            <li> No teams have been added yet.</li>
+        {% endfor %}
+    </ul>
+
+{%  endblock content %}
