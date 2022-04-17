@@ -4,11 +4,13 @@
 
     <p>{{ team_name }}</p>
 
+    <p>All Team Players</p>
+
     <ul>
         {% for player in team_players %}
             <li> {{ team }}</li>
         {% empty %}
-            <li> No teams have been added yet.</li>
+            <li> No players have been added yet.</li>
         {% endfor %}
     </ul>
 

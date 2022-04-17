@@ -19,7 +19,7 @@ def league(request):
 
 def team(request):
     """Show team stats"""
-    team_players = Team.t_players.order_by('last_name')
+    team_players = Team.t_players
     context = {'player': team_players}
     return render(request, 'League_App/team.html', context)
 
