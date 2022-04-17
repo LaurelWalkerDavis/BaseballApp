@@ -6,10 +6,16 @@ from django.db.models import SET_DEFAULT
 
 
 class Player(models.Model):
-    # team = models.ForeignKey('Team', related_name='players', related_query_name='player',
-    #                          default=None, on_delete=SET_DEFAULT)
-    first_name = models.CharField(max_length=200, default=None)
+    # identity fields
     last_name = models.CharField(max_length=200, default=None)
+    full_name = models.CharField(max_length=200, default=None)
+
+    # membership fields
+    # team = models.ForeignKey('Team', related_name='t_players', related_query_name='player',
+    #                          default=None, on_delete=SET_DEFAULT)
+    # league = models.ForeignKey('League', related_name=
+
+    # data fields
     # hits = models.IntegerField(default=0)
     # doubles = models.IntegerField(default=0)
     # triples = models.IntegerField(default=0)
@@ -24,7 +30,7 @@ class Player(models.Model):
     # fielding_percentage = models.DecimalField(max_digits=4, decimal_places=3, default=0.000)
 
     def __str__(self):
-        return f"Player <{self.first_name} {self.last_name}" \
+        return f"Player <{self.full_name}" \
                # f", \nHits: {self.hits}, \nAt Bats: {self.at_bats}, " \
                # f"\nRBIs: {self.rbi}, \nHome Runs: {self.home_runs} \nBatting Avg: {self.batting_average}" \
                # f"\n Putouts: {self.putouts}, \nAssists: {self.assists}, \nErrors: {self.errors}," \
@@ -49,8 +55,15 @@ class League(models.Model):
 
 
 class Team(models.Model):
+    # identity fields
     team_name = models.CharField(max_length=200, default=None)
-    t_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
+
+    # membership fields
+    t_players = models.ManyToManyField(Player)
+    # t_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
+    # league = models.ForeignKey(League, on_delete=models.CASCADE, default=League.league_name)
+
+    # data fields
     # t_hits = models.IntegerField(default=0)
     # t_doubles = models.IntegerField(default=0)
     # t_triples = models.IntegerField(default=0)
@@ -61,7 +74,6 @@ class Team(models.Model):
     # wins = models.IntegerField(default=0)
     # losses = models.IntegerField(default=0)
     # games_played = models.IntegerField(default=0)
-    # league = models.ForeignKey(League, on_delete=models.CASCADE, default=League.league_name)
 
     def __str__(self):
         return f"Team <{self.team_name}" \
