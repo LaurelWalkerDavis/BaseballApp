@@ -6,7 +6,7 @@
 
     <ul>
         {% for team in all_teams %}
-            <li> {{ team }}</li>
+            <li> {{ team.name }}</li>
         {% empty %}
             <li> No teams have been added yet.</li>
         {% endfor %}

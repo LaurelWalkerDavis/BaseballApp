@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from . import views
 
@@ -7,10 +7,9 @@ urlpatterns = [
     # Home page.
     path('', views.index, name='index'),
     # League page.
-    path('league/', views.league, name='league'),
+    path("league/", views.league, name='league'),
     # Team page.
     path('teams/', views.team, name='team'),
     # Single player page
-    path('players/', views.player, name='player')
+    path('player/<int:player_id>', views.player, name='player')
 ]
-

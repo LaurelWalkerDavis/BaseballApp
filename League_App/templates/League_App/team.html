@@ -8,7 +8,7 @@
 
     <ul>
         {% for player in t_players %}
-            <li> {{ team }}</li>
+            <li> {{ player.full_name }}</li>
         {% empty %}
             <li> No players have been added yet.</li>
         {% endfor %}

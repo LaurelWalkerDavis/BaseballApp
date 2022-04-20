@@ -26,7 +26,7 @@ def team(request):
 
 def player(request, player_id):
     """Show player profile"""
-    player_name = Player.objects.order_by('last_name')
-    context = {'name': player_name}
+    player_obj = Player.objects.get(id=player_id)
+    context = {'player': player_obj}
     return render(request, 'League_App/player.html', context)
 
