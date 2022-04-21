@@ -1,6 +1,6 @@
 <p>
-    <a href="{% url 'League_App:index' %}">League App</a> -
-    <a href="{% url 'League_App:league' %}">League</a> -
+    <a href="{% url 'League_App:index' %}">League App Home</a> -
+    <a href="{% url 'League_App:league' %}">{{ league.league_name }} Stats</a> -
 </p>
 
 {% block content %}{% endblock content %}

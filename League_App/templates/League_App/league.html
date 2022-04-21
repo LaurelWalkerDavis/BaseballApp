@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    <h1>{{ league_name }}</h1>
+    <h1>{{ league.league_name }}</h1>
 
-    <p>All League Teams</p>
+    <h3>All League Teams</h3>
 
     <ul>
         {% for team in all_teams %}
@@ -16,7 +16,7 @@
         {% endfor %}
     </ul>
 
-    <p>All League Players</p>
+    <h3>All League Players</h3>
 
         <ul>
         {% for player in all_players %}

@@ -15,7 +15,7 @@ class League(models.Model):
 
 class Team(models.Model):
     # identity fields
-    team_name = models.CharField(max_length=200, default=None)
+    team_name = models.CharField(max_length=200, default="My Team")
 
     # membership fields
     # t_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')

@@ -9,10 +9,10 @@ def index(request):
 
 def league(request):
     """Show all teams"""
-    league_name = League.league_name
+    league_obj = League.objects.get()
     all_teams_obj = Team.objects.order_by('team_name')
     all_players = Player.objects.order_by('last_name')
-    context = {'league_name': league_name,
+    context = {'league': league_obj,
                'all_teams': all_teams_obj,
                'all_players': all_players}
     return render(request, 'League_App/league.html', context)
@@ -20,7 +20,7 @@ def league(request):
 
 def team(request, team_id):
     """Show team stats"""
-    team_obj = Team.objects.filter(id=team_id)
+    team_obj = Team.objects.get(team=team_id)
     team_players = Player.objects.filter(team=team_id)
     context = {'team': team_obj,
                'team_players': team_players}

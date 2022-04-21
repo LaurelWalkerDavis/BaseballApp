@@ -7,7 +7,7 @@ urlpatterns = [
     # Home page.
     path('', views.index, name='index'),
     # League page.
-    path("league/", views.league, name='league'),
+    path('league/', views.league, name='league'),
     # Team page.
     path('team/<int:team_id>', views.team, name='team'),
     # Single player page
