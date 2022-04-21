@@ -2,15 +2,16 @@
 
 {% block content %}
 
-        <h1>{{ team.team_name }}</h1>
+    <h1>{{ team.team_name }} - {{ team.league.league_name }}</h1>
 
-        <p>League: {{ team.league }}</p>
-        <p>Wins: {{ team.wins }}</p>
-        <p>Losses: {{ team.losses }}</p>
-        <p>Games Played: {{ team.games_played }}</p>
+    <h3>Record</h3>
+    <ul>
+        <li>Wins: {{ team.wins }}</li>
+        <li>Losses: {{ team.losses }}</li>
+        <li>Games Played: {{ team.games_played }}</li>
+    </ul>
 
     <h3>All Team Players</h3>
-
     <ul>
         {% for player in team_players %}
             <li>

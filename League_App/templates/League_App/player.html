@@ -2,7 +2,25 @@
 
 {% block content %}
 
-    <p>{{ player.full_name }}</p>
-    <p> No stats have been added yet. </p>
+    <h1>{{ player.full_name }} - {{ player.team.team_name }}</h1>
+
+    <h3>Batting</h3>
+    <ul>
+            <li><b>Batting Average: {{ player.get_batting_average }}</b></li>
+            <li>Hits: {{ player.hits }}</li>
+            <li>At Bats: {{ player.at_bats }}</li>
+            <li>Home Runs: {{ player.home_runs }}</li>
+            <li>Triples: {{ player.triples }}</li>
+            <li>Doubles: {{ player.doubles }}</li>
+            <li>Singles: {{ player.singles }}</li>
+    </ul>
+    <h3>Fielding</h3>
+    <ul>
+            <li><b>Fielding Percentage: {{ player.get_fielding_percentage }}</b></li>
+            <li>Putouts: {{ player.putouts }}</li>
+            <li>Assists: {{ player.assists }}</li>
+            <li>Chances: {{ player.chances }}</li>
+    </ul>
+
 
 {%  endblock content %}
