@@ -18,9 +18,9 @@ def league(request):
     return render(request, 'League_App/league.html', context)
 
 
-def team(request):
+def team(request, team_id):
     """Show team stats"""
-    team_players = Player.objects.player.all()
+    team_players = Player.objects.get(id=team_id)
     context = {'players': team_players}
     return render(request, 'League_App/team.html', context)
 

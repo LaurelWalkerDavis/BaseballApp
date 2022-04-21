@@ -8,7 +8,9 @@
 
     <ul>
         {% for team in all_teams %}
-            <li> {{ team }}</li>
+            <li>
+                <a href="{% url 'League_App:team' team.id %}">{{ team.team_name }}</a>
+            </li>
         {% empty %}
             <li> No teams have been added yet.</li>
         {% endfor %}
@@ -18,7 +20,7 @@
 
         <ul>
         {% for player in all_players %}
-            <li> {{ player }}</li>
+            <li> {{ player.full_name }}</li>
         {% empty %}
             <li> No players have been added yet.</li>
         {% endfor %}
