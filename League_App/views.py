@@ -20,8 +20,10 @@ def league(request):
 
 def team(request, team_id):
     """Show team stats"""
-    team_players = Player.objects.get(id=team_id)
-    context = {'players': team_players}
+    team_obj = Team.objects.filter(id=team_id)
+    team_players = Player.objects.filter(team=team_id)
+    context = {'team': team_obj,
+               'team_players': team_players}
     return render(request, 'League_App/team.html', context)
 
 

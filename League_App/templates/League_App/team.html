@@ -2,13 +2,15 @@
 
 {% block content %}
 
-    <p>{{ team_name }}</p>
+    <h1>{{ team_name }}</h1>
 
     <p>All Team Players</p>
 
     <ul>
-        {% for player in t_players %}
-            <li> {{ player.full_name }}</li>
+        {% for player in team_players %}
+            <li>
+                <a href="{% url 'League_App:player' player.id %}">{{ player.full_name }}</a>
+            </li>
         {% empty %}
             <li> No players have been added yet.</li>
         {% endfor %}
