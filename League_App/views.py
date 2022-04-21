@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Team, League, Player
+from .forms import LeagueForm
 from django.http import HttpResponse
 
 
@@ -37,3 +38,18 @@ def player(request, player_id):
                'fielding percentage': player_fielding_percent}
     return render(request, 'League_App/player.html', context)
 
+
+def new_league(request):
+    """ add a new league"""
+    if request.method != 'POST':
+        # no data submitted; create a blank form.
+        form = LeagueForm()
+    else:
+        # POST data submitted; process data.
+        form = LeagueForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('League_App:league')
+    # Display a blank or invalid form.
+    context = {'form': form}
+    return render(request, 'League_App/new_league.html', context)
