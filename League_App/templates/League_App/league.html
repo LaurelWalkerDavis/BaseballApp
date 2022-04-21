@@ -2,14 +2,27 @@
 
 {% block content %}
 
+    <h1>{{ league_name }}</h1>
+
     <p>All League Teams</p>
 
     <ul>
         {% for team in all_teams %}
-            <li> {{ team.name }}</li>
+            <li> {{ team }}</li>
         {% empty %}
             <li> No teams have been added yet.</li>
         {% endfor %}
     </ul>
+
+    <p>All League Players</p>
+
+        <ul>
+        {% for player in all_players %}
+            <li> {{ player }}</li>
+        {% empty %}
+            <li> No players have been added yet.</li>
+        {% endfor %}
+    </ul>
+
 
 {%  endblock content %}

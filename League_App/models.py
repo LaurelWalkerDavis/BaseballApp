@@ -6,12 +6,11 @@ from django.db.models import SET_DEFAULT
 
 class League(models.Model):
     league_name = models.CharField(max_length=200, default="My League")
-    # league_teams = models.Team.team_name
     # clashes with "league = models.ForeignKey(League, on_delete=models.CASCADE)" in Team
-    #  all_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
+    # all_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
 
     def __str__(self):
-        return f"League: <{self.league_name}>"
+        return f"League: <{self.league_name}"
 
 
 class Team(models.Model):
@@ -21,7 +20,7 @@ class Team(models.Model):
     # membership fields
     # t_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
     # league = models.ManyToOneRel(League, related_name='league', on_delete=models.CASCADE)
-    league = models.ForeignKey(League, default=None, on_delete=models.CASCADE)
+    league = models.ForeignKey(League, related_name='league', default=None, on_delete=models.CASCADE)
 
     # data fields
     # t_hits = models.IntegerField(default=0)
@@ -50,7 +49,7 @@ class Player(models.Model):
     full_name = models.CharField(max_length=200, default=None)
 
     # membership fields
-    team = models.ForeignKey(Team, default=None, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, related_name='team', default=None, on_delete=models.CASCADE)
 
     # data fields
     hits = models.IntegerField(default=0)
@@ -70,7 +69,9 @@ class Player(models.Model):
 
     @property
     def get_batting_average(self):
-        return self.get_hits / self.at_bats
+        avg = self.get_hits / self.at_bats
+        str_avg = format(avg, "0.3f")
+        return str_avg
 
     @property
     def get_hits(self):
@@ -78,10 +79,12 @@ class Player(models.Model):
 
     @property
     def get_fielding_percentage(self):
-        return (self.putouts + self.assists) / self.chances
+        avg = (self.putouts + self.assists) / self.chances
+        str_avg = format(avg, "0.3f")
+        return str_avg
 
     def __str__(self):
-        return f"Player <{self.full_name}" \
+        return f"Player <{self.full_name}:" \
                f"\nBatting Avg: {self.get_batting_average}" \
                f"\nFielding Percentage: {self.get_fielding_percentage}>"
 
