@@ -1,0 +1,12 @@
+{% extends "League_App/base.html" %}
+
+{% block content %}
+    <p>Add a new league:</p>
+
+    <form action="{% url 'League_App:new_league' %}" method='post'>
+      {%  csrf_token %}
+      {{ form.as_p }}
+      <button name="submit">Add league</button>
+    </form>
+
+{% endblock content %}

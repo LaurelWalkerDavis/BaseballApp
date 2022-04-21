@@ -11,7 +11,7 @@ urlpatterns = [
     # Team page.
     path('team/<int:team_id>', views.team, name='team'),
     # Single player page
-    path('player/<int:player_id>', views.player, name='player')
+    path('player/<int:player_id>', views.player, name='player'),
 
     # Adding new league
     path('new_league/', views.new_league, name='new_league')
