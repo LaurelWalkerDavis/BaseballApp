@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Team, League, Player
-from .forms import LeagueForm
+from .forms import LeagueForm, TeamForm
 from django.http import HttpResponse
 
 
@@ -53,3 +53,24 @@ def new_league(request):
     # Display a blank or invalid form.
     context = {'form': form}
     return render(request, 'League_App/new_league.html', context)
+
+
+def new_team(request, league_id):
+    """ add a new team """
+    #new_team = Team.objects.get()
+    league = League.objects.get(id=league_id)
+    if request.method != 'POST':
+        # no data submitted; create a blank form.
+        form = TeamForm()
+    else:
+        # POST data submitted; process data.
+        form = TeamForm(data=request.POST)
+        if form.is_valid():
+            new_team = form.save(commit=False)
+            new_team.league = league
+            new_team.save()
+            return redirect('League_App:league', league_id=league_id)
+    # Display a blank or invalid form.
+    context = {'league': league, 'form': form}
+    return render(request, 'League_App/new_team.html', context)
+

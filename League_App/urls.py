@@ -14,5 +14,7 @@ urlpatterns = [
     path('player/<int:player_id>', views.player, name='player'),
 
     # Adding new league
-    path('new_league/', views.new_league, name='new_league')
+    path('new_league/', views.new_league, name='new_league'),
+    # Adding new team
+    path('new_team/<int:league_id>', views.new_team, name='new_team')
 ]
