@@ -31,8 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # my apps
     'League_App',
     'users',
+
+    # third party app
+    'bootstrap4',
 
     # default django apps
     'django.contrib.admin',
