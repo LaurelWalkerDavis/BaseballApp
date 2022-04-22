@@ -1,9 +1,10 @@
 {% extends "League_App/base.html" %}
 
-{% block content %}
-
+{% block page_header %}
     <h1>{{ player.full_name }} - {{ player.team.team_name }}</h1>
+{% endblock page_header %}
 
+{% block content %}
     <h3>Batting</h3>
     <ul>
             <li><b>Batting Average: {{ player.get_batting_average }}</b></li>
@@ -22,7 +23,7 @@
             <li>Chances: {{ player.chances }}</li>
     </ul>
 <hr/>
-    <a href="{% url 'League_App:edit_player' player.id%}">Edit player</a>
+    <h5><a href="{% url 'League_App:edit_player' player.id%}">Edit player</a></h5>
 
 
 {%  endblock content %}

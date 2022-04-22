@@ -1,11 +1,11 @@
 {% extends "League_App/base.html" %}
 
-{% block content %}
-
+{% block page_header %}
     <h1>{{ league.league_name }}</h1>
+{% endblock page_header %}
 
+{% block content %}
     <h3>All League Teams</h3>
-
     <ul>
         {% for team in all_teams %}
             <li>
@@ -17,7 +17,6 @@
     </ul>
 
     <h3>All League Players</h3>
-
         <ul>
         {% for player in all_players %}
             <li>
@@ -30,5 +29,5 @@
     <hr/>
     <br>
     <!-- <a href="{% url 'League_App:new_league' %}">Add a new league</a> --> <!-- do not give the option -->
-    <a href="{% url 'League_App:new_team' league.id%}">Add new team</a>
+    <h3><a href="{% url 'League_App:new_team' league.id%}">Register your team</a></h3>
 {%  endblock content %}
