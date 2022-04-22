@@ -1,7 +1,5 @@
 from django.db import models
-
-# Create your models here.
-from django.db.models import SET_DEFAULT
+from django.contrib.auth.models import User
 
 
 class League(models.Model):
@@ -16,6 +14,9 @@ class League(models.Model):
 class Team(models.Model):
     # identity fields
     team_name = models.CharField(max_length=200, default="My Team")
+
+    # ownership fields
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # membership fields
     # t_players = models.ManyToManyField(Player, related_name='players', related_query_name='player')
@@ -47,6 +48,9 @@ class Player(models.Model):
     # identity fields
     last_name = models.CharField(max_length=200, default=None)
     full_name = models.CharField(max_length=200, default=None)
+
+    # ownership fields
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # membership fields
     team = models.ForeignKey(Team, related_name='team', default=None, on_delete=models.CASCADE)

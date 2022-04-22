@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Team, League, Player
 from .forms import LeagueForm, TeamForm, PlayerForm
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 
 def index(request):
@@ -69,6 +70,7 @@ def new_team(request, league_id):
         form = TeamForm(data=request.POST)
         if form.is_valid():
             new_team = form.save(commit=False)
+            new_team.owner = request.user
             new_team.league = league
             new_team.save()
             return redirect('League_App:league')
@@ -82,7 +84,7 @@ def new_team(request, league_id):
 def new_player(request, team_id):
     """ add a new team """
     #new_player = Player.objects.get()
-    team = Team.objects.get(id=team_id)
+    team = Team.objects.get(id=team_id, owner=request.user)
     if request.method != 'POST':
         # no data submitted; create a blank form.
         form = PlayerForm()
@@ -92,6 +94,7 @@ def new_player(request, team_id):
         if form.is_valid():
             new_player = form.save(commit=False)
             new_player.team = team
+            new_player.owner = request.user
             new_player.save()
             return redirect('League_App:league')
             #return redirect('League_App:league', league_id=league_id)
