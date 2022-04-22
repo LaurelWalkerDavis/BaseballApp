@@ -109,7 +109,7 @@ def edit_team(request, team_id):
         form = TeamForm(instance=team, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('League_App:league', league_id=league.id)
+            return redirect('League_App:league')
     context = {'team': team, 'league': league, 'form': form}
     return render(request, 'League_App/edit_team.html', context)
 
