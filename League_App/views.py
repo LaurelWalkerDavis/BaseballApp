@@ -108,6 +108,9 @@ def edit_team(request, team_id):
     """ edit an existing league """
     team = Team.objects.get(id=team_id)
     league = team.league
+    # make sure only team owner can access this page
+    if team.owner != request.user:
+        raise Http404
     if request.method != 'POST':
         # Initial request; pre-fill form with the current team.
         form = TeamForm(instance=team)
