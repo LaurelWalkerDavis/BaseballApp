@@ -18,6 +18,12 @@ urlpatterns = [
     # Adding new team
     path('new_team/<int:league_id>', views.new_team, name='new_team'),
     # Adding new player
-    path('new_player/<int:team_id>', views.new_player, name='new_player')
+    path('new_player/<int:team_id>', views.new_player, name='new_player'),
+
+    # Editing a league
+    #path('edit_league/', views.edit_league, name='edit_league'),
+    # Editing a team
+    path('edit_team/<int:team_id>', views.edit_team, name='edit_team')
+
 ]
 

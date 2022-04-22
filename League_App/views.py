@@ -95,3 +95,21 @@ def new_player(request, team_id):
     # Display a blank or invalid form.
     context = {'team': team, 'form': form}
     return render(request, 'League_App/new_player.html', context)
+
+
+def edit_team(request, team_id):
+    """ edit an existing league """
+    team = Team.objects.get(id=team_id)
+    league = team.league
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current team.
+        form = TeamForm(instance=team)
+    else:
+        # POST data submitted; process data.
+        form = TeamForm(instance=team, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('League_App:league', league_id=league.id)
+    context = {'team': team, 'league': league, 'form': form}
+    return render(request, 'League_App/edit_team.html', context)
+

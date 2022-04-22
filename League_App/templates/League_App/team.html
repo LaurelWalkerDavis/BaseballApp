@@ -22,5 +22,7 @@
         {% endfor %}
     </ul>
     <hr/>
-    <a href="{% url 'League_App:new_player' team.id%}">Add new player</a>
+    <a href="{% url 'League_App:new_player' team.id%}">Add new player</a><br>
+    <a href="{% url 'League_App:edit_team' team.id%}">Edit team</a>
+
 {%  endblock content %}
