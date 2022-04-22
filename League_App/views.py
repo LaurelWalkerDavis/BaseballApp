@@ -84,7 +84,10 @@ def new_team(request, league_id):
 def new_player(request, team_id):
     """ add a new team """
     #new_player = Player.objects.get()
-    team = Team.objects.get(id=team_id, owner=request.user)
+    team = Team.objects.get(id=team_id)
+    # make sure only team owner can access this page
+    if team.owner != request.user:
+        raise Http404
     if request.method != 'POST':
         # no data submitted; create a blank form.
         form = PlayerForm()
@@ -129,6 +132,9 @@ def edit_player(request, player_id):
     """ edit an existing league """
     player = Player.objects.get(id=player_id)
     team = player.team
+    # make sure only team owner can access this page
+    if player.owner != request.user:
+        raise Http404
     if request.method != 'POST':
         # Initial request; pre-fill form with the current team.
         form = PlayerForm(instance=player)
