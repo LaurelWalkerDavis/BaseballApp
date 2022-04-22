@@ -1,6 +1,12 @@
 <p>
     <a href="{% url 'League_App:index' %}">League App Home</a> -
     <a href="{% url 'League_App:league' %}">{{ league.league_name }} Stats</a> -
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}.
+        <a href="{% url 'users:logout' %}">Log out</a>
+    {% else %}
+    <a href="{% url 'users:login' %}">Log in</a>
+    {% endif %}
 </p>
 
 {% block content %}{% endblock content %}
