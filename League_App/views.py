@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Team, League, Player
 from .forms import LeagueForm, TeamForm, PlayerForm
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -39,6 +39,7 @@ def player(request, player_id):
     return render(request, 'League_App/player.html', context)
 
 
+@login_required
 def new_league(request):
     """ add a new league"""
     if request.method != 'POST':
@@ -55,6 +56,7 @@ def new_league(request):
     return render(request, 'League_App/new_league.html', context)
 
 
+@login_required
 def new_team(request, league_id):
     """ add a new team """
     #new_team = Team.objects.get()
@@ -76,6 +78,7 @@ def new_team(request, league_id):
     return render(request, 'League_App/new_team.html', context)
 
 
+@login_required
 def new_player(request, team_id):
     """ add a new team """
     #new_player = Player.objects.get()
@@ -97,6 +100,7 @@ def new_player(request, team_id):
     return render(request, 'League_App/new_player.html', context)
 
 
+@login_required
 def edit_team(request, team_id):
     """ edit an existing league """
     team = Team.objects.get(id=team_id)
@@ -114,6 +118,7 @@ def edit_team(request, team_id):
     return render(request, 'League_App/edit_team.html', context)
 
 
+@login_required
 def edit_player(request, player_id):
     """ edit an existing league """
     player = Player.objects.get(id=player_id)
