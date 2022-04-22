@@ -12,9 +12,8 @@ class LeagueForm(forms.ModelForm):
 class TeamForm(forms.ModelForm):
     class Meta:
         model = Team
-        fields = ['team_name', 'league', 'wins', 'losses', 'games_played']
+        fields = ['team_name', 'wins', 'losses', 'games_played']
         labels = {'team_name': 'Team Name',
-                  'league': 'League Name',
                   'wins': 'Number of wins',
                   'losses': 'Number of losses',
                   'games_played': 'Number of games played'}
@@ -23,11 +22,10 @@ class TeamForm(forms.ModelForm):
 class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
-        fields = ['last_name', 'full_name', 'team', 'hits', 'singles', 'doubles', 'triples',
+        fields = ['last_name', 'full_name', 'hits', 'singles', 'doubles', 'triples',
                   'at_bats', 'home_runs', 'putouts', 'assists', 'chances']
         labels = {'last_name': 'Last Name',
                   'full_name': 'Full Name',
-                  'team': 'Team',
                   'hits': 'Hits',
                   'singles': 'Singles',
                   'doubles': 'Doubles',
