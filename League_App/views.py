@@ -21,8 +21,8 @@ def league(request):
 
 def team(request, team_id):
     """Show team stats"""
-    team_obj = Team.objects.get(team=team_id)
-    team_players = Player.objects.filter(team=team_id)
+    team_obj = Team.objects.get(id=team_id)
+    team_players = Player.objects.filter(id=team_id)
     context = {'team': team_obj,
                'team_players': team_players}
     return render(request, 'League_App/team.html', context)
@@ -69,7 +69,8 @@ def new_team(request, league_id):
             new_team = form.save(commit=False)
             new_team.league = league
             new_team.save()
-            return redirect('League_App:league', league_id=league_id)
+            return redirect('League_App:league')
+            #return redirect('League_App:league', league_id=league_id)
     # Display a blank or invalid form.
     context = {'league': league, 'form': form}
     return render(request, 'League_App/new_team.html', context)
