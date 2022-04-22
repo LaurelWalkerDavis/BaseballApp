@@ -28,7 +28,8 @@
         {% endfor %}
     </ul>
     <hr/>
-    <!-- <a href="{% url 'League_App:new_league' %}">Add a new league</a> --> <!-- do not give the option -->
     <br>
+    <!-- <a href="{% url 'League_App:new_league' %}">Add a new league</a> --> <!-- do not give the option -->
     <a href="{% url 'League_App:new_team' league.id%}">Add new team</a>
+
 {%  endblock content %}

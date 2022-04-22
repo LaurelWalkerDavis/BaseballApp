@@ -69,8 +69,11 @@ class Player(models.Model):
 
     @property
     def get_batting_average(self):
-        avg = self.get_hits / self.at_bats
-        str_avg = format(avg, "0.3f")
+        if self.at_bats == 0:
+            str_avg = "0.000"
+        else:
+            avg = self.get_hits / self.at_bats
+            str_avg = format(avg, "0.3f")
         return str_avg
 
     @property
@@ -79,8 +82,11 @@ class Player(models.Model):
 
     @property
     def get_fielding_percentage(self):
-        avg = (self.putouts + self.assists) / self.chances
-        str_avg = format(avg, "0.3f")
+        if self.chances == 0:
+            str_avg = "0.000"
+        else:
+            avg = (self.putouts + self.assists) / self.chances
+            str_avg = format(avg, "0.3f")
         return str_avg
 
     def __str__(self):

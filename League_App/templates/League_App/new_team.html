@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    <p><a href="{% url 'League_App:league' %}">{{ league }}</a> </p>
+    <!--<p><a href="{% url 'League_App:league' %}">{{ league.league_name }}</a> </p>-->
 
-    <p>Add a new team:</p>
+    <p><b>Add a new team:</b></p>
     <form action="{% url 'League_App:new_team' league.id %}" method='post'>
       {%  csrf_token %}
       {{ form.as_p }}

@@ -21,5 +21,6 @@
             <li> No players have been added yet.</li>
         {% endfor %}
     </ul>
-
+    <br>
+    <a href="{% url 'League_App:new_player' team.id%}">Add new player</a>
 {%  endblock content %}
