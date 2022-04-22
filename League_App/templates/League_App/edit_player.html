@@ -1,0 +1,14 @@
+{% extends "League_App/base.html" %}
+
+{% block content %}
+
+    <!--<p><a href="{% url 'League_App:league' %}">{{ league }}</a> </p>-->
+
+    <p>Edit player:</p>
+    <form action="{% url 'League_App:edit_player' player.id %}" method='post'>
+      {%  csrf_token %}
+      {{ form.as_p }}
+      <button name="submit">Save Changes</button>
+    </form>
+
+{% endblock content %}

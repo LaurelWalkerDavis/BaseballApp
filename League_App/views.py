@@ -113,3 +113,19 @@ def edit_team(request, team_id):
     context = {'team': team, 'league': league, 'form': form}
     return render(request, 'League_App/edit_team.html', context)
 
+
+def edit_player(request, player_id):
+    """ edit an existing league """
+    player = Player.objects.get(id=player_id)
+    team = player.team
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current team.
+        form = PlayerForm(instance=player)
+    else:
+        # POST data submitted; process data.
+        form = PlayerForm(instance=player, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('League_App:team', team_id=team.id)
+    context = {'player': player, 'team': team, 'form': form}
+    return render(request, 'League_App/edit_player.html', context)

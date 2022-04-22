@@ -23,7 +23,8 @@ urlpatterns = [
     # Editing a league
     #path('edit_league/', views.edit_league, name='edit_league'),
     # Editing a team
-    path('edit_team/<int:team_id>', views.edit_team, name='edit_team')
-
+    path('edit_team/<int:team_id>', views.edit_team, name='edit_team'),
+    # Editing a player
+    path('edit_player/<int:player_id>', views.edit_player, name='edit_player')
 ]
 

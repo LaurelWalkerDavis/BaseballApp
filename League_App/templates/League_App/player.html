@@ -21,6 +21,8 @@
             <li>Assists: {{ player.assists }}</li>
             <li>Chances: {{ player.chances }}</li>
     </ul>
+<hr/>
+    <a href="{% url 'League_App:edit_player' player.id%}">Edit player</a>
 
 
 {%  endblock content %}
