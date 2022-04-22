@@ -22,7 +22,7 @@ def league(request):
 def team(request, team_id):
     """Show team stats"""
     team_obj = Team.objects.get(id=team_id)
-    team_players = Player.objects.filter(id=team_id)
+    team_players = Player.objects.filter(team_id=team_id)
     context = {'team': team_obj,
                'team_players': team_players}
     return render(request, 'League_App/team.html', context)
