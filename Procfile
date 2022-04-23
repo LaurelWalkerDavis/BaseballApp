@@ -1,1 +1,1 @@
-web: gunicore BaseballApp.wsgi --log-file -
+web: gunicore League_App.wsgi --log-file -
