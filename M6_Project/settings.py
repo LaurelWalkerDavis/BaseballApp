@@ -1,3 +1,5 @@
+import django_heroku
+
 """
 Django settings for M6_Project project.
 
@@ -133,4 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # My Settings
 LOGIN_URL = 'users:login'
+
+# Heroku settings
+django_heroku.settings(locals())
 
