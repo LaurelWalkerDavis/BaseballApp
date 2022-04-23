@@ -1,1 +1,1 @@
-web: gunicorn League_App.wsgi --log-file -
+web: gunicorn M6_Project.wsgi --log-file -
