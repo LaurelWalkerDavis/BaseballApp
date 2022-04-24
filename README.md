@@ -5,6 +5,9 @@ Baseball League Manager is a web-based application for managing baseball teams, 
 ## Web Application
 [Go to the Baseball League Manager](https://baseball-league-manager.herokuapp.com/)
 
+## Packages
+Packages include: League_App, M6_Project, and users.
+
 ## Usage
 ### View Statistics as a Guest:
 ```
