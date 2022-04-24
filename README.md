@@ -1,12 +1,13 @@
 # Baseball League Manager
 
-Baseball League Manager is a web-based application for managing baseball teams, players, and statistics. It allows users to register a team manager account. After registering, users can add and edit their own teams, players, and statistics. Sample baseball stats available for tracking include: wins, losses, and games played; batting averages, fielding percentages, and related data. While all teams and players will be viewable by guests to the web page, only registered team managers have access to edit their teams' and players' data. 
+Baseball League Manager is a web-based application for managing baseball teams, players, and statistics. It allows users to register a team manager account. After registering, users can add and edit their own teams, players, and statistics. Sample baseball stats available for tracking include: wins, losses, and games played; batting averages, fielding percentages, and related data. While all teams and players will be viewable by guests to the web page, only registered team managers have access to add or edit their teams' and players' data. 
 
 ## Web Application
 [Go to the Baseball League Manager](https://baseball-league-manager.herokuapp.com/)
 
 ## Packages
-Packages include: League_App, M6_Project, and users.
+Packages include: League_App, M6_Project, and users. There is no "top-level" package. Dr. Shaffer
+indicated that this was fine for this particular project.
 
 ## Usage
 ### View Statistics as a Guest:
