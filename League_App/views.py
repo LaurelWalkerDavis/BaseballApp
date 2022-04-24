@@ -11,7 +11,7 @@ def index(request):
 
 def league(request):
     """Show all teams"""
-    league_obj = League.objects.get_object_or_404()
+    league_obj = League.objects.get()
     all_teams_obj = Team.objects.order_by('team_name')
     all_players = Player.objects.order_by('last_name')
     context = {'league': league_obj,
