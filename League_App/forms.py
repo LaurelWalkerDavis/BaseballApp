@@ -22,11 +22,10 @@ class TeamForm(forms.ModelForm):
 class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
-        fields = ['last_name', 'full_name', 'hits', 'singles', 'doubles', 'triples',
+        fields = ['last_name', 'full_name', 'singles', 'doubles', 'triples',
                   'at_bats', 'home_runs', 'putouts', 'assists', 'chances']
         labels = {'last_name': 'Last Name',
                   'full_name': 'Full Name',
-                  'hits': 'Hits',
                   'singles': 'Singles',
                   'doubles': 'Doubles',
                   'triples': 'Triples',
