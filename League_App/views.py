@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team, League, Player
 from .forms import LeagueForm, TeamForm, PlayerForm
 from django.contrib.auth.decorators import login_required
@@ -11,7 +11,7 @@ def index(request):
 
 def league(request):
     """Show all teams"""
-    league_obj = League.objects.get()
+    league_obj = League.objects.get_object_or_404()
     all_teams_obj = Team.objects.order_by('team_name')
     all_players = Player.objects.order_by('last_name')
     context = {'league': league_obj,
@@ -22,7 +22,7 @@ def league(request):
 
 def team(request, team_id):
     """Show team stats"""
-    team_obj = Team.objects.get(id=team_id)
+    team_obj = Team.objects.get_object_or_404(id=team_id)
     team_players = Player.objects.filter(team_id=team_id)
     context = {'team': team_obj,
                'team_players': team_players}
@@ -31,7 +31,7 @@ def team(request, team_id):
 
 def player(request, player_id):
     """Show player profile"""
-    player_obj = Player.objects.get(id=player_id)
+    player_obj = Player.objects.get_object_or_404(id=player_id)
     player_batting_average = player_obj.get_batting_average
     player_fielding_percent = player_obj.get_fielding_percentage
     context = {'player': player_obj,
@@ -60,8 +60,7 @@ def new_league(request):
 @login_required
 def new_team(request, league_id):
     """ add a new team """
-    #new_team = Team.objects.get()
-    league = League.objects.get(id=league_id)
+    league = League.objects.get_object_or_404(id=league_id)
     if request.method != 'POST':
         # no data submitted; create a blank form.
         form = TeamForm()
@@ -84,7 +83,7 @@ def new_team(request, league_id):
 def new_player(request, team_id):
     """ add a new team """
     #new_player = Player.objects.get()
-    team = Team.objects.get(id=team_id)
+    team = Team.objects.get_object_or_404(id=team_id)
     # make sure only team owner can access this page
     if team.owner != request.user:
         raise Http404
@@ -109,7 +108,7 @@ def new_player(request, team_id):
 @login_required
 def edit_team(request, team_id):
     """ edit an existing league """
-    team = Team.objects.get(id=team_id)
+    team = Team.objects.get_object_or_404(id=team_id)
     league = team.league
     # make sure only team owner can access this page
     if team.owner != request.user:
@@ -130,7 +129,7 @@ def edit_team(request, team_id):
 @login_required
 def edit_player(request, player_id):
     """ edit an existing league """
-    player = Player.objects.get(id=player_id)
+    player = Player.objects.get_object_or_404(id=player_id)
     team = player.team
     # make sure only team owner can access this page
     if player.owner != request.user:
