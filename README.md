@@ -1,5 +1,5 @@
-Baseball App
-Baseball App is a web-based application for managing baseball teams, players, and statistics.
+Baseball Management App
+Baseball Management App is a web-based application for managing baseball teams, players, and statistics.
 
 Installation
 Use the package manager pip to install the Baseball App.
